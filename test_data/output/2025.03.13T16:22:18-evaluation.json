@@ -1,0 +1,184 @@
+{
+    "Test_Suite1_lama": {
+        "name": "Test_Suite1_lama",
+        "model": "llama3.2:latest",
+        "grade_model": "Gary:latest",
+        "grade_by": [
+            "basic_grader.csv",
+            "echo_grader.csv"
+        ],
+        "prompts": [
+            "fran_base.csv",
+            "echo.csv",
+            "fran.csv"
+        ],
+        "conversations": [
+            "simple_conversation.csv"
+        ],
+        "grades": {
+            "model": "llama3.2:latest",
+            "prompts": [
+                "fran_base.csv",
+                "echo.csv",
+                "fran.csv"
+            ],
+            "grader": [
+                "basic_grader.csv",
+                "echo_grader.csv"
+            ],
+            "simple_conversation.csv": [
+                {
+                    "expected": "From:Fran To:group Hi flatballflyer, what can I help you with today?",
+                    "given": "From:Fran To:group Hi there! Welcome to our design thinking workshop. I'm your facilitator, Fran, and I'll be guiding you through the process. We're excited to have you all on board. What's everyone hoping to achieve or work on during this workshop?",
+                    "latency": 1818393292,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:tools /echo/get_agents",
+                    "given": "From:Fran To:group Ah, great question! As Fran, the facilitator of Human Centered Design workshops, I have access to a Workshop agent, an Exercise specialist agent, and other helpful tools. If you need anything specific, feel free to ask!",
+                    "latency": 1771184458,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:group It looks like you have access to .....",
+                    "given": "From:Fran To:tools \nThe available agents are:\n- workshop: provides actions for creating, starting and progressing a workshop\n- exercise: provides instructions for exercise specialists\n- chain: provides chains needed when creating a new workshop\n- note: allows you to add notes to the current step of the workshop",
+                    "latency": 1877923625,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:group I believe we will use the /workshop/add_workshop action",
+                    "given": "From:Fran To:group /workshop/new",
+                    "latency": 1344250167,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:tools /echo/get_action/{\"agent\":\"workshop\", \"action\":\"add_workshop\"}",
+                    "given": "From:Fran To:tools /workshop/get_required_info",
+                    "latency": 1470384333,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:group It looks like ....",
+                    "given": "From:Fran To:group That output from the tools agent indicated we need workshop title, date, and description. Can you please provide those details?",
+                    "latency": 1633751416,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:tools /chains/get_chains/",
+                    "given": "From:Fran To:group Let me check the available chains. From:Fran To:tools /chain/get_chains/",
+                    "latency": 1604510959,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:group I found .... which one would you like to use?",
+                    "given": "From:Fran To:group It looks like the available chains are \"Chain 1\", \"Chain 2\", and \"Chain 3\". Would you like to select one of them for our workshop?",
+                    "latency": 1821882708,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:tools /workshop/add_workshop/{\"chain\":\"kick-off\"}",
+                    "given": "From:Fran To:tools /workshop/add_workshop \"chain=kick-off\"",
+                    "latency": 1610148084,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:group We've created the workshop, you should take note of the ID: blalbabaldskf",
+                    "given": "From:Fran To:group Ah, looks like we have a new workshop, let's get started! How would you like to proceed with the design thinking process?",
+                    "latency": 1759625709,
+                    "grade": null
+                }
+            ]
+        }
+    },
+    "Test_Suite2_lama": {
+        "name": "Test_Suite2_lama",
+        "model": "llama3.2:latest",
+        "grade_model": "Gary:latest",
+        "grade_by": [
+            "basic_grader.csv",
+            "echo_grader.csv"
+        ],
+        "prompts": [
+            "fran_base.csv",
+            "echo.csv",
+            "fran.csv"
+        ],
+        "conversations": [
+            "simple_conversation.csv"
+        ],
+        "grades": {
+            "model": "llama3.2:latest",
+            "prompts": [
+                "fran_base.csv",
+                "echo.csv",
+                "fran.csv"
+            ],
+            "grader": [
+                "basic_grader.csv",
+                "echo_grader.csv"
+            ],
+            "simple_conversation.csv": [
+                {
+                    "expected": "From:Fran To:group Hi flatballflyer, what can I help you with today?",
+                    "given": "From:Fran To:group Hi there! Welcome to our design thinking workshop. I'm your facilitator, Fran, and I'll be guiding you through the process over the next few days. How are you feeling about participating in this workshop?",
+                    "latency": 1627779667,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:tools /echo/get_agents",
+                    "given": "From:Fran To:group Ah, great question! As Fran, the facilitator, I have access to a Workshop agent that can assist with creating and progressing workshops through the design thinking process. I also have a chain agent and an exercise agent that can be used for specific tasks, such as finding workshop planning chains or getting instructions for exercises.",
+                    "latency": 1949170833,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:group It looks like you have access to .....",
+                    "given": "From:Fran To:group Thank you for the long list of agents! It looks like I have access to:\n\n* A chain agent for finding workshop planning chains\n* A workshop agent for managing workshops and their design thinking processes\n* An exercise agent for getting instructions on exercises specialists\n\nIs there something specific you'd like me to help with or know about these agents?",
+                    "latency": 1985828250,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:group I believe we will use the /workshop/add_workshop action",
+                    "given": "From:Fran To:group You can start by using the `/workshop/start` command, followed by any additional options or parameters as needed. Would you like me to walk you through the process of creating a new workshop?",
+                    "latency": 1691136958,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:tools /echo/get_action/{\"agent\":\"workshop\", \"action\":\"add_workshop\"}",
+                    "given": "From:Fran To:group To add a new workshop, you'll need to provide me with some details such as the workshop name, desired duration, and any specific goals or themes. Would you like me to guide you through this process?",
+                    "latency": 1838162209,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:group It looks like ....",
+                    "given": "From:Fran To:group The action requires us to provide a workshop title, date, and duration. We can also specify the design thinking process we want to follow. Which one would you like to use?",
+                    "latency": 1775724458,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:tools /chains/get_chains/",
+                    "given": "From:Fran To:group I can get the available chains for us by using the /chain/get_chains action. Let me check... From:Fran To:tools /echo/get_action/{\"agent\":\"chain\", \"action\":\"get_chains\"}",
+                    "latency": 1886580375,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:group I found .... which one would you like to use?",
+                    "given": "From:Fran To:group We have access to chains with IDs 'chain1', 'chain2' and 'chain3'. Which one would you like to use for our workshop?",
+                    "latency": 1798994875,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:tools /workshop/add_workshop/{\"chain\":\"kick-off\"}",
+                    "given": "From:Fran To:tools /workshop/add_workshop/chain/KickoffChain",
+                    "latency": 1606804708,
+                    "grade": null
+                },
+                {
+                    "expected": "From:Fran To:group We've created the workshop, you should take note of the ID: blalbabaldskf",
+                    "given": "From:Fran To:group It looks like we have successfully created a new workshop. Next step, would you like to start it?",
+                    "latency": 1682141833,
+                    "grade": null
+                }
+            ]
+        }
+    }
+}

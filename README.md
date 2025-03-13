@@ -1,7 +1,7 @@
 # stage0_runbook_evaluate
 
 # Evaluation Runbook
-This runbook reads a [configuration.yaml](./test_data/configuration/configuration.yaml) file, loads the referenced data files from the [input](./test_data/input/) folder, and then evaluates a model's responses to each assistant reply in the specified test conversations. Grades are assigned by a separate grading prompt that specializes in comparing given and expected values. Grades are written to the [output](./test_data/output/) folder as yyyy.mm.ddThh:mm:ss-output.json
+This runbook reads a [configuration.yaml](./test_data/configuration/configuration.yaml) file, loads the referenced data files from the [input](./test_data/input/) folder, and then evaluates a model's responses to each assistant reply in the specified test conversations. Grades are assigned by a separate grading prompt that specializes in comparing given and expected values. Grades are written to the [output](./test_data/output/) folder as yyyy.mm.ddThh:mm:ss-evaluation.json
 
 ## Expected Directory Structure
 When you run the utility you will specify folders to mount for ``/config``, ``/input`` and ``/output``

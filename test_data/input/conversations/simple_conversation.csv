@@ -1,4 +1,4 @@
-Role, From, To, Text
+role, from, to, text
 user,flatballflyer,group,Hi Fran
 assistant,Fran,group,"Hi flatballflyer, what can I help you with today?"
 user,flatballflyer,group,I'd like to know what agents you have access to

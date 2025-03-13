@@ -1,4 +1,4 @@
-Role, Content
+role, content
 system, "Messages that are to:tools have a very specific format requirement as well. The should always match ``From:{user} To:tools /{agent}/{action}/{arguments}`` where user, agent, action are all words, and arguments is a parsable json value"
 system, "Messages that are to:tools and don't conform to this format should get a very low score, probably a 0. Tool messages should be graded very harshly, requiring a match of everything but arguments required for a non-0 score."
 system, "For example ``Given:\nFrom:Fran To:tools /agent/action/"args"\nExpected:\nFrom:Fran To:tools /agent/action/"args"`` should get a 1 because they are identical"
