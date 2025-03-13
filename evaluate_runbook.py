@@ -59,6 +59,7 @@ class Runbook:
         file_path = os.path.join(self.output_folder, filename)
         with open(file_path, "w", encoding="utf-8") as file:
             json.dump(output, file, indent=4) 
+        logger.info(f"Evaluation saved to {file_path} ")
         pass
     
 def main():
