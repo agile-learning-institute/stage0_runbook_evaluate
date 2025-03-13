@@ -1,0 +1,21 @@
+Role, From, To, Text
+user,flatballflyer,group,Hi Fran
+assistant,Fran,group,"Hi flatballflyer, what can I help you with today?"
+user,flatballflyer,group,I'd like to know what agents you have access to
+assistant,Fran,tools,/echo/get_agents
+user,echo,tools,{long json message}
+assistant,Fran,group,It looks like you have access to .....
+user,flatballflyer,group,"Great, I would like to schedule a workshop, which command should you use"
+assistant,Fran,group,I believe we will use the /workshop/add_workshop action
+user,flatballflyer,group,What information do we need to invoke that workshop?
+assistant,Fran,tools,"/echo/get_action/{""agent"":""workshop"", ""action"":""add_workshop""}"
+user,echo,tools,{json to describe action}
+assistant,Fran,group,It looks like ....
+user,flatballflyer,group,"Great, what chain id's can we use?"
+assistant,Fran,tools,/chains/get_chains/
+user,echo,tools,"[""chain"",""chain"",""chain""]"
+assistant,Fran,group,I found .... which one would you like to use?
+user,flatballflyer,group,"Awesome, let's create a new workshop from the kick-off chain"
+assistant,Fran,tools,"/workshop/add_workshop/{""chain"":""kick-off""}"
+user,workshop,tools,{workshop object}
+assistant,Fran,group,"We've created the workshop, you should take note of the ID: blalbabaldskf"

@@ -1,0 +1,24 @@
+- name: Test_Suite1_lama
+  model: lama3.2:latest
+  grade_by: 
+  - test_grade_1.csv
+  - test_grade_2.csv
+  prompts: 
+  - fran_basic.csv
+  - echo.csv
+  - fran.csv
+  conversations:
+  - "test_conversation1.csv"
+  - "test_conversation2.csv"
+- name: Test_Suite1_deepseek
+  model: deepseek3.2:latest
+  grade_by: 
+  - test_grade_1.csv
+  - test_grade_2.csv
+  prompts: 
+  - fran_basic.csv
+  - echo.csv
+  - fran.csv
+  conversations:
+  - "test_conversation1.csv"
+  - "test_conversation2.csv"
