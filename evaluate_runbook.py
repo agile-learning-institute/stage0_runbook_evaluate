@@ -57,6 +57,7 @@ class Runbook:
         timestamp = datetime.now().strftime("%Y.%m.%dT%H:%M:%S")  
         filename = f"{timestamp}-evaluation.json"
         file_path = os.path.join(self.output_folder, filename)
+        os.makedirs(self.output_folder, exist_ok=True)
         with open(file_path, "w", encoding="utf-8") as file:
             json.dump(output, file, indent=4) 
         logger.info(f"Evaluation saved to {file_path} ")
