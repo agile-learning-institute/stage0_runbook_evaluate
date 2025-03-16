@@ -1,11 +1,34 @@
+from datetime import datetime
 import os
 import json
 import yaml
-from datetime import datetime
-from stage0_py_utils import Evaluator, Loader
-
 import logging
+
+CONFIG_FOLDER = os.getenv("CONFIG_FOLDER", "./config") 
+INPUT_FOLDER = os.getenv("INPUT_FOLDER", "./input")
+OUTPUT_FOLDER = os.getenv("OUTPUT_FOLDER", "./output")
+LOGGING_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
+LOGGING_LEVEL = getattr(logging, LOGGING_LEVEL, logging.INFO)
+
+# Reset logging handlers
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+
+# Configure logging
+logging.basicConfig(
+    level=LOGGING_LEVEL,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
+
 logger = logging.getLogger(__name__)
+
+# Suppress noisy http loggers
+logging.getLogger("httpcore").setLevel(logging.WARNING)  
+logging.getLogger("httpx").setLevel(logging.WARNING)  
+
+# Utils import
+from stage0_py_utils import Evaluator, Loader
 
 class Runbook:
     """
@@ -64,26 +87,17 @@ class Runbook:
         pass
     
 def main():
-    input_folder = os.getenv("INPUT_FOLDER", "/input")
-    output_folder = os.getenv("OUTPUT_FOLDER", "/output")
-    config_folder = os.getenv("CONFIG_FOLDER", "/config")
-    logging_level = os.getenv("LOG_LEVEL", logging.INFO)
-
-    # Suppress excessive DEBUG logs from `httpcore`
-    logging.basicConfig(level=logging_level)
-    logging.getLogger("httpcore").setLevel(logging_level)  
-    logging.getLogger("httpx").setLevel(logging.WARNING)  # suppress `httpx` logs
-    logging.getLogger("stage0_py_utils.evaluator").setLevel(logging_level)
-
+    start = datetime.now()
     logger.info(f"============================ Evaluation Pipeline Starting ==============================")
-    logger.info(f"Initialized, Input: {input_folder}, Output: {output_folder}, Config: {config_folder} Logging Level {logging_level}")
+    logger.info(f"Initialized, Input: {INPUT_FOLDER}, Output: {OUTPUT_FOLDER}, Config: {CONFIG_FOLDER} Logging Level {LOGGING_LEVEL}")
     
     try:
-        runner = Runbook(config_folder=config_folder, input_folder=input_folder, output_folder=output_folder)
+        runner = Runbook(input_folder=INPUT_FOLDER, output_folder=OUTPUT_FOLDER, config_folder=CONFIG_FOLDER)
         runner.run()
     except Exception as e:
         logger.error(f"Error Reported {str(e)}", exc_info=True)
-    logger.info(f"===================== Evaluation Pipeline Completed Successfully =======================")
+    end = datetime.now()
+    logger.info(f"================ Evaluated {len(runner.configs)} configurations in {end-start} =====================")
 
 if __name__ == "__main__":
     main()
